@@ -38,8 +38,8 @@ def get_surrounding_positions(x: int, y: int, grid: Grid) -> int:
 
 def evaluate_grid(grid: Sequence[Sequence[str]]) -> int:
     count = 0
-    for x in range(len(grid[0])):
-        for y in range(len(grid)):
+    for x, _ in enumerate(grid[0]):
+        for y, _ in enumerate(grid):
             if index_or_zero(x, y, grid) != ROLL:
                 continue
             surrounding_rolls = get_surrounding_positions(x, y, grid)
@@ -55,8 +55,8 @@ def evaluate_grid_part_two(grid: Grid) -> int:
     list_grid: Grid = [list(row) for row in grid]
     while changed:
         changed = False
-        for x in range(len(list_grid[0])):
-            for y in range(len(list_grid)):
+        for x, _ in enumerate(list_grid[0]):
+            for y, _ in enumerate(list_grid):
                 if index_or_zero(x, y, list_grid) != ROLL:
                     continue
                 surrounding_rolls = get_surrounding_positions(x, y, list_grid)
