@@ -12,10 +12,7 @@ def load_data(file_path: str) -> list[list[str]]:
 
     return list(map(list, zip(*rows)))
 
-def parse_fixed_width_data(file_path: str) -> list[list[str]]:
-    data_part_one = load_data(file_path)
-    widths = [max(len(item) for item in col) for col in data_part_one]
-
+def parse_fixed_width_data(file_path: str, widths: list[int]) -> list[list[str]]:
     with open(file_path, "r") as f:
         data: list[list[str]] = []
 
@@ -30,6 +27,10 @@ def parse_fixed_width_data(file_path: str) -> list[list[str]]:
             data.append(row)
 
     return list(map(list, zip(*data)))
+
+def calculate_column_widths(data_part_one: list[list[str]]) -> list[int]:
+    widths = [max(len(item) for item in col) for col in data_part_one]
+    return widths
 
 def calculate_column(data: list[list[str]]) -> int:
     total = 0
@@ -61,12 +62,12 @@ if __name__ == "__main__":
     print(f"result: {result}")  # 5171061464548
     assert result == 5171061464548
 
-    example_data_part_two = parse_fixed_width_data("days/6/example.txt")
+    example_data_part_two = parse_fixed_width_data("days/6/example.txt", calculate_column_widths(example_data))
     example_result_part_two = calculate_column_part_two(example_data_part_two)
     print(f"example part two: {example_result_part_two}")  # 3263827
     assert example_result_part_two == 3263827
 
-    data_part_two = parse_fixed_width_data("days/6/input.txt")
+    data_part_two = parse_fixed_width_data("days/6/input.txt", calculate_column_widths(data))
     result_part_two = calculate_column_part_two(data_part_two)
     print(f"result part two: {result_part_two}")  # 10189959087258
     assert result_part_two == 10189959087258
