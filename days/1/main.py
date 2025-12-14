@@ -6,6 +6,7 @@ def load_input(file_path: str) -> list[tuple[str, int]]:
             data.append((direction, int(value)))
     return data
 
+
 def evaluate_dial(data: list[tuple[str, int]]) -> int:
     """Returns the amount of times the dial points to 0 after rotating."""
     count = 0
@@ -28,6 +29,7 @@ def zeros(position: int, step: int, k: int) -> int:
     if normalized_position > k:
         return 0
     return 1 + (k - normalized_position) // 100
+
 
 def part_two(data: list[tuple[str, int]]) -> int:
     count = 0

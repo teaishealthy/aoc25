@@ -6,15 +6,14 @@ class Field(NamedTuple):
     x: int
     y: int
 
-class Splitter(Field):
-    ...
 
-class Beam(Field):
-    ...
+class Splitter(Field): ...
 
 
-class Start(Field):
-    ...
+class Beam(Field): ...
+
+
+class Start(Field): ...
 
 
 @dataclasses.dataclass
@@ -32,11 +31,10 @@ class Lab:
 
         if self.fields[y][x] in self.splitters:
             changed = 0
-            changed += self.place_beam(x - 1, y )
-            changed += self.place_beam(x + 1, y )
+            changed += self.place_beam(x - 1, y)
+            changed += self.place_beam(x + 1, y)
             if changed > 0:
                 self.total_splits += 1
-
 
         else:
             if self.fields[y][x] in self.beams:
@@ -54,6 +52,7 @@ class Lab:
         for beam in self.beams[:]:
             self.place_beam(beam.x, beam.y + 1)
             self.beams.remove(beam)
+
 
 def load_data(filename: str) -> Lab:
     fields: list[list[Field]] = []

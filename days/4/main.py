@@ -5,6 +5,7 @@ ROLL = "@"
 
 Grid = Sequence[Sequence[str]]
 
+
 def load_input(file_path: str) -> Grid:
     data: Grid = []
     with open(file_path, "r") as file:
@@ -12,10 +13,12 @@ def load_input(file_path: str) -> Grid:
             data.append(line.strip())
     return data
 
+
 def index_or_zero(x: int, y: int, grid: Grid) -> str:
     if 0 <= y < len(grid) and 0 <= x < len(grid[0]):
         return grid[y][x]
     return EMPTY
+
 
 def get_surrounding_positions(x: int, y: int, grid: Grid) -> int:
     positions = [
@@ -23,7 +26,6 @@ def get_surrounding_positions(x: int, y: int, grid: Grid) -> int:
         (x + 1, y),
         (x, y - 1),
         (x, y + 1),
-
         (x - 1, y - 1),
         (x - 1, y + 1),
         (x + 1, y - 1),
@@ -36,6 +38,7 @@ def get_surrounding_positions(x: int, y: int, grid: Grid) -> int:
             count += 1
     return count
 
+
 def evaluate_grid(grid: Sequence[Sequence[str]]) -> int:
     count = 0
     for x, _ in enumerate(grid[0]):
@@ -46,6 +49,7 @@ def evaluate_grid(grid: Sequence[Sequence[str]]) -> int:
             if surrounding_rolls < 4:
                 count += 1
     return count
+
 
 def evaluate_grid_part_two(grid: Grid) -> int:
     # fast enough for input size
@@ -65,6 +69,7 @@ def evaluate_grid_part_two(grid: Grid) -> int:
                     list_grid[y][x] = EMPTY
                     changed = True
     return count
+
 
 if __name__ == "__main__":
     example = load_input("days/4/example.txt")

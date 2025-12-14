@@ -28,12 +28,14 @@ def load_data(file_path: str) -> tuple[list[Range], list[int]]:
 
     return ranges, numbers
 
+
 def count_fresh_ingredients(ranges: list[Range], numbers: list[int]) -> int:
     fresh_count = 0
     for number in numbers:
         if any(number in r for r in ranges):
             fresh_count += 1
     return fresh_count
+
 
 def part_two(ranges: list[Range], _: list[int]) -> int:
     ranges = sorted(ranges, key=lambda r: r.start)
@@ -52,6 +54,7 @@ def part_two(ranges: list[Range], _: list[int]) -> int:
             current_end = next_range.end
 
     return total
+
 
 if __name__ == "__main__":
     example = load_data("days/5/example.txt")
